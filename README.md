@@ -1,4 +1,4 @@
-<h2>카카오 로그인api 및 톡캘린더api를 활용한 카카오톡 친구 생일 모아보기 서비스</h2>
+<h2>카카오api를 활용한 카카오톡 친구 생일 모아보기 서비스</h2>
 
 
 <h3>1. 기획의도</h3>
@@ -38,21 +38,21 @@ javascript<br><br>
 
 <h4>4-3. ERD v0.1</h4>
    
-<img width="751" alt="erd_v0 1" src="https://github.com/yuniyulic/rememberBday/assets/77518429/7d1c3a92-9666-4403-93e7-325f15d055b7">
+<img width="900" alt="erd_v0 1" src="https://github.com/yuniyulic/rememberBday/assets/77518429/7d1c3a92-9666-4403-93e7-325f15d055b7">
 <br><hr>
 
 <h4>4-4. 화면설계서 v0.1</h4>
 
-<img width="900" alt="슬라이드1" src="https://github.com/yuniyulic/rememberBday/assets/77518429/4d2176f4-419f-41b6-a684-965a61afd8be">
-<img width="900" alt="슬라이드2" src="https://github.com/yuniyulic/rememberBday/assets/77518429/2ce8ce61-120f-45c6-95b5-55320554978e">
-<img width="900" alt="슬라이드3" src="https://github.com/yuniyulic/rememberBday/assets/77518429/5c9d25f5-4743-4f0f-a50b-c087366d461b">
-<img width="900" alt="슬라이드4" src="https://github.com/yuniyulic/rememberBday/assets/77518429/e011b374-5bbc-44ce-b5e8-946e4d8bf215">
-<img width="900" alt="슬라이드5" src="https://github.com/yuniyulic/rememberBday/assets/77518429/02bfe642-ae29-46ea-a935-e9cae1abb0c1">
-<img width="900" alt="슬라이드6" src="https://github.com/yuniyulic/rememberBday/assets/77518429/adca3aab-9ceb-45b5-a510-81f69602dd1d">
-<img width="900" alt="슬라이드7" src="https://github.com/yuniyulic/rememberBday/assets/77518429/a751de36-db15-43b3-9041-63f478dc79a3">
-<img width="900" alt="슬라이드8" src="https://github.com/yuniyulic/rememberBday/assets/77518429/51a3b067-2ebe-4410-802c-896effadc0ac">
-<img width="900" alt="슬라이드9" src="https://github.com/yuniyulic/rememberBday/assets/77518429/ada76363-7a66-46dc-b2c5-e5cdf0a9105b">
-<img width="900" alt="슬라이드10" src="https://github.com/yuniyulic/rememberBday/assets/77518429/33bef37e-7ee9-4979-b61a-d7a772869de0">
-<img width="900" alt="슬라이드11" src="https://github.com/yuniyulic/rememberBday/assets/77518429/d1f49f5d-2f0a-4f81-93bb-838a4456a81c">
-<img width="900" alt="슬라이드12" src="https://github.com/yuniyulic/rememberBday/assets/77518429/0762801a-897b-49ef-9ac8-824862d4d364">
+<img width="1100" alt="슬라이드1" src="https://github.com/yuniyulic/rememberBday/assets/77518429/4d2176f4-419f-41b6-a684-965a61afd8be">
+<img width="1100" alt="슬라이드2" src="https://github.com/yuniyulic/rememberBday/assets/77518429/2ce8ce61-120f-45c6-95b5-55320554978e">
+<img width="1100" alt="슬라이드3" src="https://github.com/yuniyulic/rememberBday/assets/77518429/5c9d25f5-4743-4f0f-a50b-c087366d461b">
+<img width="1100" alt="슬라이드4" src="https://github.com/yuniyulic/rememberBday/assets/77518429/e011b374-5bbc-44ce-b5e8-946e4d8bf215">
+<img width="1100" alt="슬라이드5" src="https://github.com/yuniyulic/rememberBday/assets/77518429/02bfe642-ae29-46ea-a935-e9cae1abb0c1">
+<img width="1100" alt="슬라이드6" src="https://github.com/yuniyulic/rememberBday/assets/77518429/adca3aab-9ceb-45b5-a510-81f69602dd1d">
+<img width="1100" alt="슬라이드7" src="https://github.com/yuniyulic/rememberBday/assets/77518429/a751de36-db15-43b3-9041-63f478dc79a3">
+<img width="1100" alt="슬라이드8" src="https://github.com/yuniyulic/rememberBday/assets/77518429/51a3b067-2ebe-4410-802c-896effadc0ac">
+<img width="1100" alt="슬라이드9" src="https://github.com/yuniyulic/rememberBday/assets/77518429/ada76363-7a66-46dc-b2c5-e5cdf0a9105b">
+<img width="1100" alt="슬라이드10" src="https://github.com/yuniyulic/rememberBday/assets/77518429/33bef37e-7ee9-4979-b61a-d7a772869de0">
+<img width="1100" alt="슬라이드11" src="https://github.com/yuniyulic/rememberBday/assets/77518429/d1f49f5d-2f0a-4f81-93bb-838a4456a81c">
+<img width="1100" alt="슬라이드12" src="https://github.com/yuniyulic/rememberBday/assets/77518429/0762801a-897b-49ef-9ac8-824862d4d364">
 
