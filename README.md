@@ -20,6 +20,7 @@ javascript
 
 4. 산출물
    4-1. 프로토타입 v0.1 (카카오 오븐)
+   
    ![01_카카오 로그인](https://github.com/yuniyulic/rememberBday/assets/77518429/de86d854-768d-4e66-8f3d-0d6605bc57af)
    ![02_생일 캘린더](https://github.com/yuniyulic/rememberBday/assets/77518429/cad7b42c-9bde-4e95-a6b9-dfa2faa68358)
    <img width="659" alt="03_메모" src="https://github.com/yuniyulic/rememberBday/assets/77518429/f76fa1fc-bada-4014-ad9f-3802a85746d6">
@@ -28,13 +29,19 @@ javascript
    <img width="656" alt="06_예약메세지 수정삭제" src="https://github.com/yuniyulic/rememberBday/assets/77518429/61d5704a-5b03-4ce6-b863-61c0bb8c991d">
    <img width="656" alt="07_로그아웃" src="https://github.com/yuniyulic/rememberBday/assets/77518429/3186b42f-649f-4f33-b053-5b886925755b">
 
+
    4-2. 요구사항 정의서 v0.1
+   
    ![요구사항정의서v0 1](https://github.com/yuniyulic/rememberBday/assets/77518429/b576d0f9-2e09-48ec-b8f4-7458cfe02f50)
 
+
    4-3. ERD v0.1
-   <img width="751" alt="erd_v0 1" src="https://github.com/yuniyulic/rememberBday/assets/77518429/da71a2a2-5d1c-4f16-8490-cdc730fcc1ee">
+   
+   <img width="751" alt="erd_v0 1" src="https://github.com/yuniyulic/rememberBday/assets/77518429/7d1c3a92-9666-4403-93e7-325f15d055b7">
+
 
    4-4. 화면설계서 v0.1
+   
    ![슬라이드1](https://github.com/yuniyulic/rememberBday/assets/77518429/4d2176f4-419f-41b6-a684-965a61afd8be)
    ![슬라이드2](https://github.com/yuniyulic/rememberBday/assets/77518429/2ce8ce61-120f-45c6-95b5-55320554978e)
    ![슬라이드3](https://github.com/yuniyulic/rememberBday/assets/77518429/5c9d25f5-4743-4f0f-a50b-c087366d461b)
