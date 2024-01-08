@@ -1,5 +1,5 @@
 package com.kakao.rememberBday.domain.msg;
 
-public class MsgServiceImpl {
+public class MsgServiceImpl implements MsgService {
 
 }

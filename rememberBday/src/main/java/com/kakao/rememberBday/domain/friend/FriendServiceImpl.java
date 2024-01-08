@@ -1,5 +1,5 @@
 package com.kakao.rememberBday.domain.friend;
 
-public class FriendServiceImpl {
+public class FriendServiceImpl implements FriendService {
 
 }
