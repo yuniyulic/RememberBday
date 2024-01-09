@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	UserService userService;
 	
 	@RequestMapping(value="/index", method= {RequestMethod.POST, RequestMethod.GET})
 	public String index() {
 		System.out.println("인덱스 페이지 호출");
 		String test = userService.selectTest();
 		System.out.println("조회 테스트 : " + test);
+		return "index";
+	}
+	
+	@RequestMapping(value="/callback2", method= {RequestMethod.POST, RequestMethod.GET})
+	public String callback() {
+		System.out.println("kakaoCallback성공");
 		return "index";
 	}
 	

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kakao.rememberBday.domain.user.UserMapper">
+	<select id="save" resultType="String">
+		select 'saveTest'
+	</select>
+	
+	<select id="selectUserById" resultType="map" parameterType="long">
+		SELECT * FROM USER WHERE user_id = #{user_id}
+	</select>
+	
+	<insert id="insertUser" parameterType="map">
+		INSERT INTO USER (user_id, user_name, user_email)
+		VALUES (#{user_id}, #{user_name}, #{user_email})
+	</insert>
+	
+	<update id="updateUser" parameterType="map">
+		UPDATE USER
+		SET user_name = #{user_name},
+			user_email = #{user_email}
+		WHERE user_id = #{user_id}
+	</update>
+</mapper>

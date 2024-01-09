@@ -2,7 +2,9 @@ package com.kakao.rememberBday.global.auth;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -24,6 +26,9 @@ public class KakaoServiceImpl implements KakaoService {
 	
 	@Autowired
 	private UserMapper userMapper;
+	
+	@Autowired
+    private SqlSession sqlSession;
 
 	@Value("${spring.security.oauth2.client.registration.kakao.client-id}")
 	private String CLIENT_ID;
@@ -44,7 +49,7 @@ public class KakaoServiceImpl implements KakaoService {
 			                + "&response_type=code";
 	}
 	
-	public KakaoDTO getKakaoInfo(String code) throws Exception {
+	public HashMap<String, Object> getKakaoInfo(String code) throws Exception {
 		if (code == null) throw new Exception("Failed get authorization code");
 		
 		String accessToken = "";
@@ -81,10 +86,11 @@ public class KakaoServiceImpl implements KakaoService {
 			throw new Exception("API call failed");
 		}
 		
+		System.out.println("accessToken : " + accessToken);
 		return getUserInfoWithToken(accessToken);
 	}
 	
-	private KakaoDTO getUserInfoWithToken(String accessToken) throws Exception {
+	private HashMap<String, Object> getUserInfoWithToken(String accessToken) throws Exception {
 		// HttpHeader 생성
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "Bearer " + accessToken);
@@ -116,13 +122,25 @@ public class KakaoServiceImpl implements KakaoService {
 		userInfo.put("user_name", nickname);
 		userInfo.put("user_email", email);
 		
-		userMapper.save(userInfo);
+		// 사용자의 user_id 값
+		long userId = (long) userInfo.get("user_id");
+		
+		// DB에서 사용자 정보 조회
+		Map<String, Object> existingUser = sqlSession.selectOne("selectUserById", userId);
+		
+		if (existingUser == null) {
+			// 사용자 정보가 없으면 INSERT 실행
+			sqlSession.insert("insertUser", userInfo);
+			System.out.println("User inserted successfully.");
+		} else {
+			// 사용자 정보가 이미 있으면 UPDATE 실행
+			sqlSession.update("updateUser", userInfo);
+			System.out.println("User updated successfully.");
+		}
+		
+		System.out.println("userInfo : " + userInfo);
 
-		return KakaoDTO.builder()
-						.user_id(id)
-						.user_name(nickname)
-						.user_email(email)
-						.build();
+		return userInfo;
 	}
 	
 }
