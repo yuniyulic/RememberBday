@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.kakao.rememberBday.domain.user.UserMapper;
 
@@ -29,6 +30,17 @@ public class KakaoServiceImpl implements KakaoService {
 	
 	@Autowired
     private SqlSession sqlSession;
+	
+	private long userId;
+	
+	private String accessToken = "";
+	private String refreshToken = "";
+	
+	private final RestTemplate restTemplate;
+
+	public KakaoServiceImpl(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
 
 	@Value("${spring.security.oauth2.client.registration.kakao.client-id}")
 	private String CLIENT_ID;
@@ -52,8 +64,8 @@ public class KakaoServiceImpl implements KakaoService {
 	public HashMap<String, Object> getKakaoInfo(String code) throws Exception {
 		if (code == null) throw new Exception("Failed get authorization code");
 		
-		String accessToken = "";
-		String refreshToken = "";
+//		String accessToken = "";
+//		String refreshToken = "";
 		
 		try {
 			HttpHeaders headers = new HttpHeaders();
@@ -123,7 +135,7 @@ public class KakaoServiceImpl implements KakaoService {
 		userInfo.put("user_email", email);
 		
 		// 사용자의 user_id 값
-		long userId = (long) userInfo.get("user_id");
+		userId = (long) userInfo.get("user_id");
 		
 		// DB에서 사용자 정보 조회
 		Map<String, Object> existingUser = sqlSession.selectOne("selectUserById", userId);
@@ -143,4 +155,46 @@ public class KakaoServiceImpl implements KakaoService {
 		return userInfo;
 	}
 	
+	@Override
+	public String getAccessTokenByUserId() throws Exception {
+		// userId를 활용하여 getKakaoInfo 메소드를 호출하여 accessToken을 얻음
+//		HashMap<String, Object> kakaoInfo = getKakaoInfo(String.valueOf(userId));
+
+		// 얻은 정보에서 accessToken 추출
+//		String accessToken = (String) kakaoInfo.get("access_token");
+		System.out.println("access_token : " + accessToken);
+
+		return accessToken;
+	}
+	
+	@Override
+	public ResponseEntity<String> getCalendars(String accessToken) {
+		// 헤더 설정
+		HttpHeaders headers = createHeaders(accessToken);
+
+		// 파라미터 설정
+//		String url = "https://kapi.kakao.com/v2/api/calendar/calendars";
+//		String filter = "USER";
+		String url = "https://kapi.kakao.com/v2/api/calendar/events";
+
+		// URI 생성
+//		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("filter", filter);
+		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
+															.queryParam("calendar_id","primary")
+															.queryParam("preset","THIS_MONTH");
+//		.queryParam("from", "2024-01-01T00:00:00Z")
+//		.queryParam("to", "2024-01-31T00:00:00Z")
+
+		// 요청
+		// restTemplate.exchange 메서드로 HTTP GET 요청을 보냄
+		// builder.toUriString()로 생성된 URI 문자열을 사용
+		// HttpHeaders는 이미 설정된 상태로 HttpEntity에 포함됨
+		return restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity<>(headers), String.class);
+	}
+
+	private HttpHeaders createHeaders(String accessToken) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", "Bearer " + accessToken);
+		return headers;
+	}
 }

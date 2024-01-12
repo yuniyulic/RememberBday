@@ -7,8 +7,21 @@
 
 <body>
 	<li th:text="|사용자정보 = ${kakaoInfo}|">code</li>
+	<li th:href="@{|${kakaoUrl}|}">★CALENDER★</li>
 	<!--<a
 		href="https://kauth.kakao.com/oauth/logout?client_id=2aad40910868e3c5fa9594f8de34a07b&logout_redirect_uri=http://localhost:8080/member/do">로그아웃</a>-->
 </body>
 
 </html>
+
+<!--<script th:inline="javascript">
+	$(document).ready(function () {
+		// getAccessTokenByUserId() 메소드 비동기 호출
+		$.get('/kakao/getAccessTokenByUserId', function (result) {
+			console.log('AccessToken:', result);
+
+			// 여기에 반환된 AccessToken을 활용하여 원하는 동작 수행
+			// 예를 들어, 캘린더 API 호출 등을 수행할 수 있습니다.
+		});
+	});
+</script>-->

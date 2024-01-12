@@ -3,6 +3,7 @@ package com.kakao.rememberBday.global.auth;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,9 +44,34 @@ public class KakaoController {
 	// 모델에 데이터 추가
 	model.addAttribute("kakaoInfo", kakaoInfo);
 	
+	// 캘린더 호출
+	String accessToken = kakaoService.getAccessTokenByUserId();
+	kakaoService.getCalendars(accessToken);
+	
+	ResponseEntity<String> calendarsResponse = kakaoService.getCalendars(accessToken);
+	
+	// 응답 상태 코드 확인
+	int statusCode = calendarsResponse.getStatusCodeValue();
+	System.out.println("Status Code: " + statusCode);
+
+	// 응답 헤더 확인
+	HttpHeaders headers = calendarsResponse.getHeaders();
+	System.out.println("Headers: " + headers);
+
+	// 응답 본문(body) 확인
+	String responseBody = calendarsResponse.getBody();
+	System.out.println("Response Body: " + responseBody);
+	
 	// main.html로 이동
 //		return "<script>location.href='/main';</script>";
 	return "main";
 	}
-		
+	
+	@GetMapping("/getAccessTokenByUserId")
+	public String getAccessTokenByUserId() throws Exception {
+
+		// KakaoService의 getCalendars 메소드 호출
+		return kakaoService.getAccessTokenByUserId();
+	}
+	
 }
