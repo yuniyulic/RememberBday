@@ -3,17 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<title>로그인</title>
+	
+	<style>
+		#top {width: 95%; height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px;}
+		p.logo {float:right; padding-left: 5px; font-weight: bold;}
+		
+		#loginBtn {text-align: center; display: flex; align-items: center; justify-content: center; height: 90%; width: 100%;}
+		#loginBtn img {height: 60px; margin-bottom: -10px;}
+	</style>
 </head>
 
 <body>
-	<!--<a class="p-2"
-		href="https://kauth.kakao.com/oauth/authorize?client_id=3490cacb0caf44f5940e4b7dcad93ad4&redirect_uri=http://localhost:8080/oauth/authorize&response_type=code">
-		<img th:src="@{/img/kakao_login_medium_narrow.png}" style="height:60px" />
-	</a>-->
-	<a th:href="@{|${kakaoUrl}|}">
-	<!--<a th:href="${kakaoUrl}">-->
-		<img th:src="@{/img/kakao_login_medium_narrow.png}" style="height:60px" />
-	</a>
+	<div id="top">
+		<div>
+			<img th:src="@{/img/baseline_cake_black_24dp.png}"/>
+			<p th:text="'생일기억'" class="logo"></p>
+		</div>
+	</div>
+	<div id="loginBtn">
+		<a th:href="@{|${kakaoUrl}|}">
+		<!--<a th:href="${kakaoUrl}">-->
+			<img th:src="@{/img/kakao_login_large_narrow.png}" style="height:60px" />
+		</a>
+	</div>
 </body>
 
 </html>
