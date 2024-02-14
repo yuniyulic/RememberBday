@@ -7,21 +7,73 @@
 	<script src="/fullcalendar-6.1.10/dist/index.global.min.js" type="application/javascript"></script>
 
 	<style>
-		#calendar {max-width: 900px; margin: 80px auto;}
-		
-		#top {width:100%; height:50px;}
-		p.logo {float:left; width:200px; padding-left:20px;}
-		p.myPage {float:right; width:200px;}
+		#calendar {
+			max-width: 900px;
+			margin: 80px auto;
+		}
+
+		#top {
+			width: 100%;
+			height: 50px;
+		}
+
+		p.logo {
+			float: left;
+			width: 200px;
+			padding-left: 20px;
+		}
+
+		p.myPage {
+			float: right;
+			width: 200px;
+		}
 	</style>
 
 	<!-- FullCalendar 초기화 스크립트 -->
 	<script th:inline="javascript">
 		$(document).ready(function () {
+			console.log('hi');
+
 			var calendarEl = document.getElementById('calendar');
 			var calendar = new FullCalendar.Calendar(calendarEl, {
-				initialView: 'dayGridMonth'
+				initialView: 'dayGridMonth',
 				// 여기에 필요한 다른 FullCalendar 옵션을 추가할 수 있습니다.
+				events: function (fetchInfo, successCallback, failureCallback) {
+					// 여기서 이벤트를 가져오는 비동기 로직을 처리합니다
+					var responseBody = [[${responseBody}]];
+					var events = [];
+					
+					console.log('responseBody : ' + responseBody);
+
+					// JSON 문자열을 JavaScript 객체로 파싱합니다
+					var parsedResponse = JSON.parse(responseBody);
+					console.log('parsedResponse 전체 : ' + parsedResponse);
+					console.log(parsedResponse.length);
+
+					// 응답에서 이벤트를 반복하고 FullCalendar에 맞게 형식을 지정합니다
+					for (var i = 0; i < parsedResponse.length; i++) {
+						var event = parsedResponse[i].time;
+						console.log('parsedResponse : ' + parsedResponse);
+						//console.log('event : ' + JSON.stringify(event));
+
+						// event가 null이 아닌 경우에만 이벤트를 추가합니다
+						if (event !== null) {
+							events.push({
+								//title: 'Event', // 필요에 따라 이를 사용자 정의할 수 있습니다
+								start: event.start_at,
+								end: event.end_at,
+								allDay: event.all_day
+							});
+						}
+					}
+
+					// 이벤트 배열을 콜백 함수에 전달하여 FullCalendar에 표시합니다
+					successCallback(events);
+					
+					console.log('events : ' + events);
+				}
 			});
+
 			calendar.render();
 		});
 	</script>
@@ -33,7 +85,7 @@
 		<p th:text="${kakaoInfo.user_name} + '님, 안녕하세요!'" class="myPage"></p>
 		<!--<li th:href="@{|${kakaoUrl}|}">★CALENDER★</li>-->
 	</div>
-	
+
 	<div id="calendar"></div>
 </body>
 

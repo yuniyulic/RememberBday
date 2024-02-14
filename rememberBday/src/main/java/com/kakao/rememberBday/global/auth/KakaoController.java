@@ -35,36 +35,37 @@ public class KakaoController {
 //	@RequestMapping("callback")
 	@RequestMapping(value="/callback", method= {RequestMethod.POST, RequestMethod.GET})
 	public String callback(HttpServletRequest request, Model model) throws Exception {
-	HashMap<String, Object> kakaoInfo = kakaoService.getKakaoInfo(request.getParameter("code"));
+		HashMap<String, Object> kakaoInfo = kakaoService.getKakaoInfo(request.getParameter("code"));
+		
+		System.out.println("/kakao/callback 성공");
+		System.out.println("kakaoInfo: " + kakaoInfo);
 	
-	System.out.println("/kakao/callback 성공");
-	System.out.println("kakaoInfo: " + kakaoInfo);
-
+		
+		// 모델에 데이터 추가
+		model.addAttribute("kakaoInfo", kakaoInfo);
+		
+		// 캘린더 호출
+		String accessToken = kakaoService.getAccessTokenByUserId();
+		kakaoService.getCalendars(accessToken);
+		
+		ResponseEntity<String> calendarsResponse = kakaoService.getCalendars(accessToken);
+		
+		// 응답 상태 코드 확인
+		int statusCode = calendarsResponse.getStatusCodeValue();
+		System.out.println("Status Code: " + statusCode);
 	
-	// 모델에 데이터 추가
-	model.addAttribute("kakaoInfo", kakaoInfo);
+		// 응답 헤더 확인
+		HttpHeaders headers = calendarsResponse.getHeaders();
+		System.out.println("Headers: " + headers);
 	
-	// 캘린더 호출
-	String accessToken = kakaoService.getAccessTokenByUserId();
-	kakaoService.getCalendars(accessToken);
-	
-	ResponseEntity<String> calendarsResponse = kakaoService.getCalendars(accessToken);
-	
-	// 응답 상태 코드 확인
-	int statusCode = calendarsResponse.getStatusCodeValue();
-	System.out.println("Status Code: " + statusCode);
-
-	// 응답 헤더 확인
-	HttpHeaders headers = calendarsResponse.getHeaders();
-	System.out.println("Headers: " + headers);
-
-	// 응답 본문(body) 확인
-	String responseBody = calendarsResponse.getBody();
-	System.out.println("Response Body: " + responseBody);
-	
-	// main.html로 이동
-//		return "<script>location.href='/main';</script>";
-	return "main";
+		// 응답 본문(body) 확인
+		String responseBody = calendarsResponse.getBody();
+		System.out.println("Response Body: " + responseBody);
+		model.addAttribute("responseBody", responseBody);
+		
+		// main.html로 이동
+	//		return "<script>location.href='/main';</script>";
+		return "main";
 	}
 	
 	@GetMapping("/getAccessTokenByUserId")
